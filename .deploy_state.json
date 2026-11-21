@@ -10,5 +10,6 @@
   "AUTOMATION",
   "LEAD_GENERATION"
  ],
- "standby_enabled": true
+ "standby_enabled": true,
+ "published": true
 }

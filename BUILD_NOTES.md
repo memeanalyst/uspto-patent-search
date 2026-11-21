@@ -128,6 +128,31 @@ account; total staging usage ~$0.002 (budget was ~$0.50).
   literally named `type`; the record field ships as
   `publicationType`.
 
-## Step 5 — publish
+## Step 5 — publish (DONE 2026-11-21)
 
-(to be filled in at publish)
+Published via deploy.py publish (full-body PUT). Read-back
+verified independently: isPublic True, **notice NONE**, title
+"USPTO Patent Search — New Patent Alerts", description 296
+chars, categories BUSINESS / AUTOMATION / LEAD_GENERATION,
+pricing patent-fetched FREE/BRONZE $0.004, SILVER $0.0034,
+GOLD/PLATINUM/DIAMOND $0.0028, no start fee; standby enabled
+SINGLE_TENANT; actorPermissionLevel LIMITED_PERMISSIONS;
+exampleRunInput = the schema prefill. Standby URL answers 401
+unauthenticated (live + auth-gated):
+https://magnova--uspto-patent-search.apify.actor
+Store: https://apify.com/magnova/uspto-patent-search
+GitHub: https://github.com/memeanalyst/uspto-patent-search
+
+Notes:
+- The actor GET's `readme` field reads empty — the live Google
+  Patents sibling shows the same via this endpoint; the README
+  ships in the build source (fleet pattern) and renders on the
+  Store from there.
+- A standby caller test with the outside test account was not
+  run (the test token is not persisted locally — fleet-standard
+  skip); server mode is unit-tested and mirrors the sibling's
+  verified implementation.
+- Icons A–D are in icons/ (media-generation-*.webp); upload is
+  Hamzah's Console step. Muse's pick: A (navy/gold scroll +
+  magnifier + seal) for the official-register feel, C (violet
+  radar + bell) if he wants the alerts angle.
