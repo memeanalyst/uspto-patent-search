@@ -66,9 +66,11 @@ def test_shape_claims_match_listing_promises():
     assert fields['inventors']['min'] == 0.90
     assert fields['cpcCodes']['min'] == 0.85
     # Priority dates are sparse on the freshest applications (2/200
-    # in the 2026-11-21 census); the floor guards against total
-    # disappearance, not corpus mix.
-    assert fields['priorityDate']['min'] == 0.02
+    # in the 2026-11-21 census, 2/250 in the HF sample run behind
+    # drift issue #38); the floor guards against total
+    # disappearance, not corpus mix — breach only below 0.3%.
+    assert fields['priorityDate']['min'] == 0.005
+    assert fields['priorityDate']['margin'] == 0.002
     assert shape['minSample'] == 30
 
 

@@ -51,10 +51,10 @@
    "min": 0.95
   },
   "priorityDate": {
-   "basis": "Present only where the publication claims priority \u2014 first filings have none. Workspace census 2026-11-21: 2/200 on the freshest Nov 2026 applications (priority claims arrive with older/grant corpora). The listing claims the field qualitatively; this floor sits near the fresh-corpus minimum and guards against total disappearance.",
-   "margin": 0.01,
+   "basis": "Present only where the publication claims priority — first filings have none. Fresh-corpus censuses: 2/200 (1.0%) in the 2026-11-21 staging census and 2/250 (0.8%) in the HF sample run that filed drift issue #38. The floor sits below both observations and guards against total disappearance only; a single priority date in a 250-record sample (0.4%) still passes.",
+   "margin": 0.002,
    "max": 1.0,
-   "min": 0.02
+   "min": 0.005
   },
   "publicationDate": {
    "basis": "Structural: records without a usable publication date are skipped, never delivered.",
