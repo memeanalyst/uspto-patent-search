@@ -180,7 +180,7 @@ def test_mixed_page_parses():
     first = recs[0]
     assert first['publicationNumber'] == 'US20260370217A1'
     assert first['kindCode'] == 'A1'
-    assert first['type'] == 'application'
+    assert first['publicationType'] == 'application'
     assert first['patentTitle']
     assert first['publicationDate'] == '2026-11-19'
     assert first['filingDate'] == '2024-03-07'
@@ -194,7 +194,7 @@ def test_mixed_page_parses():
 
 def test_grants_page_types():
     recs = [C.parse_result(i) for i in C.iter_result_items(GRANTS)]
-    assert recs and all(r['type'] == 'grant' for r in recs)
+    assert recs and all(r['publicationType'] == 'grant' for r in recs)
     first = recs[0]
     assert first['publicationNumber'] == 'US12802069B1'
     assert first['kindCode'] == 'B1'
@@ -213,7 +213,7 @@ def test_priority_date_is_earliest_claim():
 
 def test_applications_page_types_and_assignee_fallback():
     recs = [C.parse_result(i) for i in C.iter_result_items(APPS)]
-    assert recs and all(r['type'] == 'application' for r in recs)
+    assert recs and all(r['publicationType'] == 'application' for r in recs)
     # At least one fresh application has no recorded assignee and
     # falls back to the applicant name.
     fallback = [r for r in recs if r['assignee']]

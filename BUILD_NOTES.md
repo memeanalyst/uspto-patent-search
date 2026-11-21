@@ -88,9 +88,45 @@ smoke of the shipped client (2026-11-21): counts 8,180 for the
 prefill window — identical to the platform gate — first page
 100 records, all in-window, newest 2026-11-19.
 
-## Step 4 — staging gates
+## Step 4 — staging gates (ALL PASSED 2026-11-21)
 
-(to be filled in as staging runs land)
+Actor ID 0pNCVqMaQSVc4MECl (private staging). Runs on the Magnova
+account; total staging usage ~$0.002 (budget was ~$0.50).
+
+- **Smoke (recent window)**: run iOc10ePeFjvt4eyfu — prefill
+  queries/window, maxResults 25. matchedTotal 8,180 (identical to
+  the platform gate and the workspace count), 25 PATENT + SUMMARY,
+  ALL records dated 2026-11-19 (the newest publication day).
+  An empty recent window would have failed the gate — it is full.
+- **Corpus (October 2026)**: run 1iDcHQtiHRFxhLmaD —
+  matchedTotal 35,775 (identical to the Step-1 prototype count),
+  25 delivered, all dated 2026-10-29, filteredOutDate 0.
+- **Monitor lifecycle** (CPC G06N20/00 unit, 2-day window, 99
+  matched): baseline kYnj2BtiJgs9AS9fx delivered 10, state = the
+  10 delivered ids exactly (capped remainder stays unseen);
+  rerun QyAQKg9v2VYwWXQ1Z delivered the NEXT 10 with 0 overlap
+  and duplicatesSkipped 10; silent seed t1aetP31OYyV6tKQ1
+  (monitorOnlyNew, fresh store) delivered 0, seededSilently 99,
+  charged 0; post-seed rerun 36eUcGaxPK8SWj3ZM delivered 0 with
+  duplicatesSkipped 99; after trimming 3 ids from the state,
+  rerun lmgonR46xh89WyCfU delivered EXACTLY those 3
+  (duplicatesSkipped 96).
+- **Charge audit** (delayed re-read — counts lag at finish):
+  25+25+10+10+0+0+3 = 73 delivered = 73 charged
+  ({'patent-fetched': N} per run, exact on every run).
+- **Claims-vs-data census** (50 PATENT records, smoke + corpus):
+  every field named in the README table at 100% population
+  (floors 0.85–1.00); priorityDate 18% vs its 0.02 floor
+  (qualitative "where claimed" copy). PASS.
+- **Personal-data scan**: independent scanner written from
+  scratch (email / US phone / intl phone / SSN shapes);
+  POSITIVE CONTROL passed (all 4 kinds found in a planted
+  record); real scan over all 70 unique staging records:
+  0 hits. (Inventor/assignee names are public register data —
+  a documented product field, not a finding.)
+- Build note: the dataset-schema validator rejects a field
+  literally named `type`; the record field ships as
+  `publicationType`.
 
 ## Step 5 — publish
 

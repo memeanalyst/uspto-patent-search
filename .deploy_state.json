@@ -1,0 +1,14 @@
+{
+ "actor_id": "0pNCVqMaQSVc4MECl",
+ "build_id": "Vjm5h8KSAENc6TEHI",
+ "env_vars_set": [
+  "MAGNOVA_ALERTS_TOKEN"
+ ],
+ "pricing_set": true,
+ "categories_used": [
+  "BUSINESS",
+  "AUTOMATION",
+  "LEAD_GENERATION"
+ ],
+ "standby_enabled": true
+}

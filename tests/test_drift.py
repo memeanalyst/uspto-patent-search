@@ -31,7 +31,7 @@ def make_records(n: int, **overrides) -> list[dict]:
             'publicationNumber': 'US12802069B1',
             'kindCode': 'B1',
             'patentTitle': 'Anomaly detection based on ensemble models',
-            'type': 'grant',
+            'publicationType': 'grant',
             'assignee': 'An Assignee Inc.',
             'inventors': ['An Inventor'],
             'filingDate': '2022-02-18',

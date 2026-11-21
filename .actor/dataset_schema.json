@@ -1,1 +1,407 @@
-{"$schema":"https://apify.com/schemas/v1/dataset.ide.json","actorSpecification":1,"fields":{"apiError":{"description":"SUMMARY only: true when USPTO Patent Public Search could not be read (at all, or mid-stream). See the ERROR record.","title":"Source error","type":["boolean","null"]},"applicationNumber":{"description":"PATENT only: the USPTO application (serial) number as published, e.g. \"18/751240\".","title":"Application number","type":["string","null"]},"assignee":{"description":"PATENT only: the recorded assignee exactly as published in the official register (usually an organisation; occasionally a person for independent filings). Where a publication records no assignee — common for the newest applications — this is the recorded applicant instead. Register data — no contact details ever.","title":"Assignee","type":["string","null"]},"cpcCodes":{"description":"PATENT only: the publication's inventive CPC (Cooperative Patent Classification) symbols as indexed, e.g. [\"G06N20/00\"].","title":"CPC classifications","type":["array","null"]},"datelessSkipped":{"description":"SUMMARY only: results skipped because the index carried no usable publication date for them — a windowed run cannot place them.","title":"Skipped (no publication date)","type":["integer","null"]},"deliveredNew":{"description":"SUMMARY only: how many PATENT records this run delivered (and charged).","title":"Delivered","type":["integer","null"]},"duplicatesSkipped":{"description":"SUMMARY only: results skipped because the monitor store had already seen them, or because a search repeated one within the run.","title":"Duplicates skipped","type":["integer","null"]},"durationSec":{"description":"SUMMARY only: the run's duration in seconds.","title":"Duration (seconds)","type":["number","null"]},"errorCount":{"description":"SUMMARY only: how many errors the run recorded (see the ERROR record / summary errors).","title":"Error count","type":["integer","null"]},"familyId":{"description":"PATENT only: USPTO's current family identifier for the publication (a stable numeric ID, shipped as a string).","title":"Family ID","type":["string","null"]},"filingDate":{"description":"PATENT only: the application filing date (ISO date). Null when none is indexed.","title":"Filing date","type":["string","null"]},"filteredOutDate":{"description":"SUMMARY only: results excluded because their publication date fell outside the run window (the window is enforced on the record itself, boundary-inclusive).","title":"Filtered out (outside window)","type":["integer","null"]},"generatedAt":{"description":"SUMMARY only: when the run produced this summary (ISO 8601, UTC).","title":"Generated at","type":["string","null"]},"inventors":{"description":"PATENT only: a one-entry list with the first-listed inventor's name exactly as published in the official register, in \"First Last\" order. A publication can name more inventors; the USPTO search payload returns the first. Register data — no contact details ever.","title":"Inventors (first-listed)","type":["array","null"]},"itemsErrored":{"description":"SUMMARY only: patents that matched but failed at delivery/charge time.","title":"Items errored","type":["integer","null"]},"kindCode":{"description":"PATENT only: the WIPO kind-code suffix of the publication number (e.g. \"B1\", \"B2\", \"A1\"), exactly as published — kind-code meanings are office-specific, so the raw code is shipped without an invented label.","title":"Kind code","type":["string","null"]},"matchedQueries":{"description":"PATENT only, keyword runs only: the run's keyword query that surfaced this patent. A patent found by several of the run's queries is delivered — and charged — once, and this field names the first query that found it.","title":"Matched keyword queries","type":["array","null"]},"matchedTotal":{"description":"SUMMARY only: how many publications USPTO reported for the run's searches inside the window (summed per search), before per-run caps.","title":"Matched total","type":["integer","null"]},"message":{"description":"ERROR records only: what went wrong, in plain language.","title":"Message","type":["string","null"]},"monitorOnlyNew":{"description":"SUMMARY only: the run's monitorOnlyNew setting.","title":"Monitor only new","type":["boolean","null"]},"note":{"description":"SUMMARY only: what this run's records are and where they come from.","title":"Note","type":["string","null"]},"patentTitle":{"description":"PATENT only: the patent title as indexed by USPTO. Null only when the index carries no title.","title":"Title","type":["string","null"]},"priorityDate":{"description":"PATENT only: the earliest priority date (ISO date), where the publication claims priority. Absent on first filings that claim no priority — common for the newest applications.","title":"Priority date","type":["string","null"]},"publicationDate":{"description":"PATENT only: the publication date (ISO date) — the date the run window and the publishedSince cursor compare against.","title":"Publication date","type":["string","null"]},"publicationNumber":{"description":"PATENT only: the publication's stable number as published by the USPTO (e.g. \"US12802069B1\", \"US20260370217A1\") — the key only-new detection diffs against.","title":"Publication number","type":["string","null"]},"publishedSince":{"description":"SUMMARY only, cursor runs only: the run's publishedSince cursor, exactly as given.","title":"Published-since cursor","type":["string","null"]},"recordType":{"description":"PATENT = one delivered patent publication (charged); SUMMARY = one run-summary record at the end of every run (never charged); ERROR = USPTO Patent Public Search could not be checked in this run (never charged).","title":"Record type","type":["string"]},"resultsFetched":{"description":"SUMMARY only: how many results the run actually read from the search API (pages are read newest-first until the caps are met or the searches are exhausted).","title":"Results fetched","type":["integer","null"]},"searchUnits":{"description":"SUMMARY only: how many searches the run executed (one per keyword query; one filter-only search when no keywords were given).","title":"Search units","type":["integer","null"]},"seededSilently":{"description":"SUMMARY only: patents remembered without delivery because the run was a monitorOnlyNew first run against a fresh store.","title":"Seeded silently","type":["integer","null"]},"source":{"description":"ERROR records only: the data source that could not be checked (\"uspto-ppubs\").","title":"Source","type":["string","null"]},"sourceUrl":{"description":"PATENT only: the publication's official PDF on USPTO's image server (image-ppubs.uspto.gov). A link shipped as data.","title":"Official USPTO PDF","type":["string"]},"stateExisted":{"description":"SUMMARY only: true when the monitor store already held state from an earlier run.","title":"State existed","type":["boolean","null"]},"stateStoreUsed":{"description":"SUMMARY only: true when a monitor state store was opened and delta state applied.","title":"Monitor store used","type":["boolean","null"]},"stoppedByMaxCharge":{"description":"SUMMARY only: true when delivery stopped at the run's maximum charge. Undelivered patents stay unseen; the next monitoring run delivers them.","title":"Stopped by max charge","type":["boolean","null"]},"stoppedByResultCap":{"description":"SUMMARY only: true when delivery stopped at the run's maximum-patents cap.","title":"Stopped by result cap","type":["boolean","null"]},"streamComplete":{"description":"SUMMARY only: true when the run read every search to its end (false when it stopped at a cap, the max charge, the timeout, or a source error).","title":"Stream complete","type":["boolean","null"]},"truncatedByTimeout":{"description":"SUMMARY only: true when delivery stopped early to stay inside the run timeout.","title":"Truncated by timeout","type":["boolean","null"]},"type":{"description":"PATENT only: \"grant\" for a granted US patent (source database USPAT), \"application\" for a published US patent application (US-PGPUB).","title":"Publication type","type":["string","null"]},"unparsedSkipped":{"description":"SUMMARY only: results skipped because they carried no usable publication guid.","title":"Skipped (unparsable)","type":["integer","null"]},"windowEnd":{"description":"SUMMARY only: the last publication date of the run's window (ISO date).","title":"Window end","type":["string","null"]},"windowStart":{"description":"SUMMARY only: the first publication date of the run's window (ISO date).","title":"Window start","type":["string","null"]}},"views":{"patents":{"description":"One row per delivered patent publication, plus one SUMMARY row per run and an ERROR row when the source could not be checked.","display":{"component":"table","properties":{"assignee":{"label":"Assignee"},"deliveredNew":{"label":"Delivered"},"inventors":{"label":"Inventor (first)"},"kindCode":{"label":"Kind code"},"message":{"label":"Message"},"patentTitle":{"label":"Title"},"publicationDate":{"label":"Published"},"publicationNumber":{"label":"Publication №"},"recordType":{"label":"Type"},"sourceUrl":{"format":"link","label":"USPTO PDF"},"type":{"label":"Kind"}}},"title":"Patents","transformation":{"fields":["recordType","publicationNumber","publicationDate","patentTitle","type","kindCode","assignee","inventors","cpcCodes","filingDate","priorityDate","applicationNumber","familyId","sourceUrl","matchedQueries","deliveredNew","message","note"]}}}}
+{
+ "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+ "actorSpecification": 1,
+ "fields": {
+  "apiError": {
+   "description": "SUMMARY only: true when USPTO Patent Public Search could not be read (at all, or mid-stream). See the ERROR record.",
+   "title": "Source error",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "applicationNumber": {
+   "description": "PATENT only: the USPTO application (serial) number as published, e.g. \"18/751240\".",
+   "title": "Application number",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "assignee": {
+   "description": "PATENT only: the recorded assignee exactly as published in the official register (usually an organisation; occasionally a person for independent filings). Where a publication records no assignee \u2014 common for the newest applications \u2014 this is the recorded applicant instead. Register data \u2014 no contact details ever.",
+   "title": "Assignee",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "cpcCodes": {
+   "description": "PATENT only: the publication's inventive CPC (Cooperative Patent Classification) symbols as indexed, e.g. [\"G06N20/00\"].",
+   "title": "CPC classifications",
+   "type": [
+    "array",
+    "null"
+   ]
+  },
+  "datelessSkipped": {
+   "description": "SUMMARY only: results skipped because the index carried no usable publication date for them \u2014 a windowed run cannot place them.",
+   "title": "Skipped (no publication date)",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "deliveredNew": {
+   "description": "SUMMARY only: how many PATENT records this run delivered (and charged).",
+   "title": "Delivered",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "duplicatesSkipped": {
+   "description": "SUMMARY only: results skipped because the monitor store had already seen them, or because a search repeated one within the run.",
+   "title": "Duplicates skipped",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "durationSec": {
+   "description": "SUMMARY only: the run's duration in seconds.",
+   "title": "Duration (seconds)",
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "errorCount": {
+   "description": "SUMMARY only: how many errors the run recorded (see the ERROR record / summary errors).",
+   "title": "Error count",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "familyId": {
+   "description": "PATENT only: USPTO's current family identifier for the publication (a stable numeric ID, shipped as a string).",
+   "title": "Family ID",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "filingDate": {
+   "description": "PATENT only: the application filing date (ISO date). Null when none is indexed.",
+   "title": "Filing date",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "filteredOutDate": {
+   "description": "SUMMARY only: results excluded because their publication date fell outside the run window (the window is enforced on the record itself, boundary-inclusive).",
+   "title": "Filtered out (outside window)",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "generatedAt": {
+   "description": "SUMMARY only: when the run produced this summary (ISO 8601, UTC).",
+   "title": "Generated at",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "inventors": {
+   "description": "PATENT only: a one-entry list with the first-listed inventor's name exactly as published in the official register, in \"First Last\" order. A publication can name more inventors; the USPTO search payload returns the first. Register data \u2014 no contact details ever.",
+   "title": "Inventors (first-listed)",
+   "type": [
+    "array",
+    "null"
+   ]
+  },
+  "itemsErrored": {
+   "description": "SUMMARY only: patents that matched but failed at delivery/charge time.",
+   "title": "Items errored",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "kindCode": {
+   "description": "PATENT only: the WIPO kind-code suffix of the publication number (e.g. \"B1\", \"B2\", \"A1\"), exactly as published \u2014 kind-code meanings are office-specific, so the raw code is shipped without an invented label.",
+   "title": "Kind code",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "matchedQueries": {
+   "description": "PATENT only, keyword runs only: the run's keyword query that surfaced this patent. A patent found by several of the run's queries is delivered \u2014 and charged \u2014 once, and this field names the first query that found it.",
+   "title": "Matched keyword queries",
+   "type": [
+    "array",
+    "null"
+   ]
+  },
+  "matchedTotal": {
+   "description": "SUMMARY only: how many publications USPTO reported for the run's searches inside the window (summed per search), before per-run caps.",
+   "title": "Matched total",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "message": {
+   "description": "ERROR records only: what went wrong, in plain language.",
+   "title": "Message",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "monitorOnlyNew": {
+   "description": "SUMMARY only: the run's monitorOnlyNew setting.",
+   "title": "Monitor only new",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "note": {
+   "description": "SUMMARY only: what this run's records are and where they come from.",
+   "title": "Note",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "patentTitle": {
+   "description": "PATENT only: the patent title as indexed by USPTO. Null only when the index carries no title.",
+   "title": "Title",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "priorityDate": {
+   "description": "PATENT only: the earliest priority date (ISO date), where the publication claims priority. Absent on first filings that claim no priority \u2014 common for the newest applications.",
+   "title": "Priority date",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "publicationDate": {
+   "description": "PATENT only: the publication date (ISO date) \u2014 the date the run window and the publishedSince cursor compare against.",
+   "title": "Publication date",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "publicationNumber": {
+   "description": "PATENT only: the publication's stable number as published by the USPTO (e.g. \"US12802069B1\", \"US20260370217A1\") \u2014 the key only-new detection diffs against.",
+   "title": "Publication number",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "publishedSince": {
+   "description": "SUMMARY only, cursor runs only: the run's publishedSince cursor, exactly as given.",
+   "title": "Published-since cursor",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "recordType": {
+   "description": "PATENT = one delivered patent publication (charged); SUMMARY = one run-summary record at the end of every run (never charged); ERROR = USPTO Patent Public Search could not be checked in this run (never charged).",
+   "title": "Record type",
+   "type": [
+    "string"
+   ]
+  },
+  "resultsFetched": {
+   "description": "SUMMARY only: how many results the run actually read from the search API (pages are read newest-first until the caps are met or the searches are exhausted).",
+   "title": "Results fetched",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "searchUnits": {
+   "description": "SUMMARY only: how many searches the run executed (one per keyword query; one filter-only search when no keywords were given).",
+   "title": "Search units",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "seededSilently": {
+   "description": "SUMMARY only: patents remembered without delivery because the run was a monitorOnlyNew first run against a fresh store.",
+   "title": "Seeded silently",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "source": {
+   "description": "ERROR records only: the data source that could not be checked (\"uspto-ppubs\").",
+   "title": "Source",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "sourceUrl": {
+   "description": "PATENT only: the publication's official PDF on USPTO's image server (image-ppubs.uspto.gov). A link shipped as data.",
+   "title": "Official USPTO PDF",
+   "type": [
+    "string"
+   ]
+  },
+  "stateExisted": {
+   "description": "SUMMARY only: true when the monitor store already held state from an earlier run.",
+   "title": "State existed",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "stateStoreUsed": {
+   "description": "SUMMARY only: true when a monitor state store was opened and delta state applied.",
+   "title": "Monitor store used",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "stoppedByMaxCharge": {
+   "description": "SUMMARY only: true when delivery stopped at the run's maximum charge. Undelivered patents stay unseen; the next monitoring run delivers them.",
+   "title": "Stopped by max charge",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "stoppedByResultCap": {
+   "description": "SUMMARY only: true when delivery stopped at the run's maximum-patents cap.",
+   "title": "Stopped by result cap",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "streamComplete": {
+   "description": "SUMMARY only: true when the run read every search to its end (false when it stopped at a cap, the max charge, the timeout, or a source error).",
+   "title": "Stream complete",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "truncatedByTimeout": {
+   "description": "SUMMARY only: true when delivery stopped early to stay inside the run timeout.",
+   "title": "Truncated by timeout",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "unparsedSkipped": {
+   "description": "SUMMARY only: results skipped because they carried no usable publication guid.",
+   "title": "Skipped (unparsable)",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "windowEnd": {
+   "description": "SUMMARY only: the last publication date of the run's window (ISO date).",
+   "title": "Window end",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "windowStart": {
+   "description": "SUMMARY only: the first publication date of the run's window (ISO date).",
+   "title": "Window start",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "publicationType": {
+   "description": "PATENT only: \"grant\" for a granted US patent (source database USPAT), \"application\" for a published US patent application (US-PGPUB).",
+   "title": "Publication type",
+   "type": [
+    "string",
+    "null"
+   ]
+  }
+ },
+ "views": {
+  "patents": {
+   "description": "One row per delivered patent publication, plus one SUMMARY row per run and an ERROR row when the source could not be checked.",
+   "display": {
+    "component": "table",
+    "properties": {
+     "assignee": {
+      "label": "Assignee"
+     },
+     "deliveredNew": {
+      "label": "Delivered"
+     },
+     "inventors": {
+      "label": "Inventor (first)"
+     },
+     "kindCode": {
+      "label": "Kind code"
+     },
+     "message": {
+      "label": "Message"
+     },
+     "patentTitle": {
+      "label": "Title"
+     },
+     "publicationDate": {
+      "label": "Published"
+     },
+     "publicationNumber": {
+      "label": "Publication \u2116"
+     },
+     "recordType": {
+      "label": "Type"
+     },
+     "sourceUrl": {
+      "format": "link",
+      "label": "USPTO PDF"
+     },
+     "publicationType": {
+      "label": "Kind"
+     }
+    }
+   },
+   "title": "Patents",
+   "transformation": {
+    "fields": [
+     "recordType",
+     "publicationNumber",
+     "publicationDate",
+     "patentTitle",
+     "publicationType",
+     "kindCode",
+     "assignee",
+     "inventors",
+     "cpcCodes",
+     "filingDate",
+     "priorityDate",
+     "applicationNumber",
+     "familyId",
+     "sourceUrl",
+     "matchedQueries",
+     "deliveredNew",
+     "message",
+     "note"
+    ]
+   }
+  }
+ }
+}

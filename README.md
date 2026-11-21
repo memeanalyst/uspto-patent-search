@@ -15,7 +15,7 @@ One `PATENT` record per delivered publication, one `SUMMARY` record at the end o
 | `publicationNumber` | The publication's stable number as published by the USPTO, e.g. `US12802069B1`, `US20260370217A1` — the key only-new detection diffs against | Always |
 | `kindCode` | The WIPO kind-code suffix (`B1`, `B2`, `A1`, …), exactly as published | ≥ 95% of records |
 | `patentTitle` | The patent title as indexed by the USPTO | ≥ 95% of records |
-| `type` | `grant` for a granted US patent, `application` for a published US patent application | ≥ 95% of records |
+| `publicationType` | `grant` for a granted US patent, `application` for a published US patent application | ≥ 95% of records |
 | `assignee` | The recorded assignee exactly as published in the official register (usually an organisation; occasionally a person for independent filings). Where a publication records no assignee — common for the newest applications — this is the recorded **applicant** instead | ≥ 90% of records |
 | `inventors` | A one-entry list: the **first-listed** inventor, exactly as published, in "First Last" order. A publication can name more inventors; the USPTO search payload returns the first | ≥ 90% of records |
 | `filingDate` | Application filing date (ISO date) | ≥ 95% of records |
@@ -73,7 +73,7 @@ Output (one real record, from a November 2026 run):
   "publicationNumber": "US20260370217A1",
   "kindCode": "A1",
   "patentTitle": "Software-Defined Pulse Orchestration Platform",
-  "type": "application",
+  "publicationType": "application",
   "assignee": "Quantum Machines",
   "inventors": ["Yonatan COHEN"],
   "filingDate": "2024-03-07",

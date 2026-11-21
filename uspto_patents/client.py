@@ -119,7 +119,7 @@ _ET_AL_RE = re.compile(r'\s+et al\.?$', re.IGNORECASE)
 # The only fields a delivered PATENT record may ever carry (plus
 # recordType). Tests assert parsed records never exceed this set.
 PATENT_FIELDS = {
-    'publicationNumber', 'kindCode', 'patentTitle', 'type',
+    'publicationNumber', 'kindCode', 'patentTitle', 'publicationType',
     'assignee', 'inventors', 'filingDate', 'publicationDate',
     'priorityDate', 'applicationNumber', 'cpcCodes', 'familyId',
     'sourceUrl', 'matchedQueries',
@@ -832,7 +832,7 @@ def parse_result(item: dict[str, Any]) -> dict[str, Any] | None:
         'publicationNumber': pubnum,
         'kindCode': kind_code,
         'patentTitle': title,
-        'type': record_type,
+        'publicationType': record_type,
         'assignee': assignee,
         'inventors': parse_inventors(item.get('inventorsShort')),
         'filingDate': filing_date,
